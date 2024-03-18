@@ -28,7 +28,7 @@ def get_data(request):
 
         offset = (page_number - 1) * page_size
 
-        cursor.execute('SELECT * FROM samNewTest ORDER BY PID OFFSET ? ROWS FETCH NEXT ? ROWS ONLY', (offset, page_size))
+        cursor.execute('SELECT * FROM samTest ORDER BY PID OFFSET ? ROWS FETCH NEXT ? ROWS ONLY', (offset, page_size))
         rows = cursor.fetchall()
 
         data = [dict(zip([column[0] for column in cursor.description], row)) for row in rows]
@@ -62,7 +62,7 @@ def filter_data(request):
 
         offset = (page_number - 1) * page_size
 
-        cursor.execute('SELECT * FROM samNewTest WHERE PropertyState = ? ORDER BY PID OFFSET ? ROWS FETCH NEXT ? ROWS ONLY', (property_state,offset, page_size))
+        cursor.execute('SELECT * FROM samTest WHERE PropertyState = ? ORDER BY PID OFFSET ? ROWS FETCH NEXT ? ROWS ONLY', (property_state,offset, page_size))
         rows = cursor.fetchall()
         
         data = [dict(zip([column[0] for column in cursor.description], row)) for row in rows]
